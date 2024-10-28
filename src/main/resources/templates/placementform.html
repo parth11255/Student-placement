@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  
+<head>
+    <meta charset="UTF-8">
+    <title>Placement Form</title>
+    <style>
+        body {
+            background-color: #F5EDED;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #A0DEFF;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #1E90FF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/savePlacement" method="post" th:object="${placementEntity}" id="placement">
+        <h3>Placement Details</h3>
+        <table>
+            <tr>
+                <td><label for="percentage">Percentage</label></td>
+                <td><input type="number" th:field="*{percentage}" placeholder="Enter your percentage" min="65" required></td>
+            </tr>
+            <tr>
+                <td><label for="skills">Proficiency</label></td>
+                <td>
+                    <input type="checkbox" th:field="*{skills}" value="java"> Java<br>
+                    <input type="checkbox" th:field="*{skills}" value="oop"> OOP Concepts<br>
+                    <input type="checkbox" th:field="*{skills}" value="git"> Git/GitHub<br>
+                    <input type="checkbox" th:field="*{skills}" value="android"> Android Development<br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"  onclick="savePlacement"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

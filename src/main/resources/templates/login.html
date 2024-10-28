@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('https://source.unsplash.com/1600x900/?abstract,gradient');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: zoomIn 0.6s ease-out;
+            width: 800px;
+            max-width: 90%;
+            padding: 30px;
+        }
+
+        .login-form {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .login-form h3 {
+            text-align: left;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .login-form input[type="text"], .login-form input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input[type="text"]:focus, .login-form input[type="number"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .login-form input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .login-form input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .login-form label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            text-align: left;
+        }
+
+        .login-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .login-image img {
+            max-width: 300px;
+            width: 200%;
+            height: auto;
+        }
+
+        .background-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(160, 222, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle1 {
+            width: 250px;
+            height: 250px;
+            top: 10%;
+            left: 5%;
+        }
+
+        .circle2 {
+            width: 350px;
+            height: 350px;
+            bottom: 10%;
+            right: 5%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(40px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                width: 90%;
+            }
+            .login-image {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-circle circle1"></div>
+    <div class="background-circle circle2"></div>
+
+    <div class="login-container">
+        <div class="login-form">
+            <h3>Welcome Back!</h3>
+            <form action="/save" method="post" th:object="${userEntity}">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <label for="prnNumber">PRN Number</label>
+                <input type="number" th:field="*{prnNumber}" placeholder="Enter your PRN number" required></input>
+                
+                <label for="userName">Name</label>
+                <input type="text" th:field="*{userName}" placeholder="Enter your name" required></input>
+                
+                <input type="submit" value="Login"></input>
+            </form>
+        </div>
+        
+        <!-- Added the image beside the form -->
+        <div class="login-image">
+            <img src="https://poly.kkwagh.edu.in/ACTS22-23-24/kkwlogo.png" alt="KKW Logo">
+        </div>
+    </div>
+</body>
+</html>

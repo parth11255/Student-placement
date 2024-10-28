@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  
+<head>
+    <meta charset="UTF-8">
+    <title>Placement Data</title>
+</head>
+<body>
+
+    <h3>Placement Details Submitted:</h3>
+    <table>
+        <tr>
+            <td><strong>Student Name:</strong></td>
+            <td th:text="${placementEntity.studentName}"></td>
+        </tr>
+        <tr>
+            <td><strong>Student ID:</strong></td>
+            <td th:text="${placementEntity.studentId}"></td>
+        </tr>
+        <tr>
+            <td><strong>Percentage:</strong></td>
+            <td th:text="${placementEntity.percentage}"></td>
+        </tr>
+        <tr>
+            <td><strong>Skills:</strong></td>
+            <td>
+                <ul>
+                    <li th:each="skill : ${placementEntity.skills}" th:text="${skill}"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
